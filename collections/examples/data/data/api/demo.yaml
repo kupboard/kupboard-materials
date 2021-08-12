@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: demo
+  version: '1.0.0'
+  description: 'kupboard openapi demo'
+servers:
+  - url: 'http://localhost:8080'
+    description: Local
+paths:
+  /v1/demo/list:
+    get:
+      summary: List
+      tags: []
+      responses:
+        '200':
+          $ref: '#/components/responses/OK_200_List'
+      operationId: getList
+      description: List items
+components:
+  schemas:
+    Product:
+      title: Product
+      type: object
+      properties:
+        name:
+          type: string
+          enum:
+            - BMW
+            - Mercedes
+            - Volkswagen
+            - Tesla
+            - Ferrari
+        id:
+          type: integer
+          minimum: 100
+          maximum: 200
+        price:
+          type: integer
+          minimum: 250000
+          maximum: 900000
+  responses:
+    OK_200_List:
+      description: 개요
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              stock:
+                $ref: '#/components/schemas/Product'
+         
